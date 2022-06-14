@@ -5,30 +5,21 @@ import com.group10.itahdeerx.components.MyContainer;
 import com.group10.itahdeerx.components.MyTextField;
 import com.group10.itahdeerx.utils.Theme;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 public class MainApp extends Application {
 
@@ -49,13 +40,14 @@ public class MainApp extends Application {
 
         stage.setMinWidth(640);
         stage.setMinHeight(480);
-        stage.setTitle("Hello!");
+        stage.setTitle("i-TahdeerX | Sign In");
         stage.setScene(scene);
         stage.show();
     }
 
     private void loadUsers() {
         this.users = new UsersDB().loadArr();
+        System.out.println(users);
     }
 
     private void signUp() {
@@ -68,6 +60,8 @@ public class MainApp extends Application {
     }
 
     private void signIn(String username, String password) {
+
+        loadUsers();
 
         errorText.setText(""); // Reset error text
 
@@ -85,6 +79,7 @@ public class MainApp extends Application {
                     mainStage.setScene(scene);
                     mainStage.setMinHeight(720);
                     mainStage.setMinWidth(1280);
+                    mainStage.setTitle("i-TahdeerX | Dashboard");
                 }
             });
 
@@ -110,7 +105,7 @@ public class MainApp extends Application {
         imageView.setFitHeight(87);
         VBox.setMargin(imageView, new Insets(0, 0, 20, 0));
 
-        TextField username = new MyTextField("Matric Number");
+        TextField username = new MyTextField("Username");
 
         PasswordField password = MyTextField.passwordField("Password");
 

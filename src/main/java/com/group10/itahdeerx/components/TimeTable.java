@@ -19,10 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -72,7 +68,7 @@ public class TimeTable extends VBox {
         return _cell;
     }
 
-    private VBox getTableHeaderCell(String cellContent, HBox container) {
+    private VBox getTableCell(String cellContent, HBox container) {
         VBox dayContainer = new VBox();
         dayContainer.setAlignment(Pos.CENTER);
         dayContainer.setPadding(new Insets(12));
@@ -92,10 +88,10 @@ public class TimeTable extends VBox {
         HBox tableHead = new HBox();
         tableHead.setSpacing(5);
         tableHead.setAlignment(Pos.CENTER_LEFT);
-        tableHead.getChildren().add(getTableHeaderCell("Day/Time", tableHead));
+        tableHead.getChildren().add(getTableCell("Day/Time", tableHead));
 
         for (TimetableData time: timetableHeaders) {
-            tableHead.getChildren().add(getTableHeaderCell(time.getTimeFrom() + " - " + time.getTimeTo(), tableHead));
+            tableHead.getChildren().add(getTableCell(time.getTimeFrom() + " - " + time.getTimeTo(), tableHead));
         }
 
         mainContainer.getChildren().add(tableHead);
@@ -105,7 +101,7 @@ public class TimeTable extends VBox {
             HBox tableRow = new HBox();
             tableRow.setAlignment(Pos.CENTER_LEFT);
             tableRow.setSpacing(5);
-            tableRow.getChildren().add(getTableHeaderCell(set.getKey(), tableRow));
+            tableRow.getChildren().add(getTableCell(set.getKey(), tableRow));
 
             ObservableList<Node> list = FXCollections.observableArrayList();
             Bindings.bindContentBidirectional(list, tableRow.getChildren());
@@ -195,15 +191,6 @@ public class TimeTable extends VBox {
         }
 
         return mainContainer;
-
-    }
-
-    public static LocalDate stringToDate(String date) {
-
-        Instant instant = Instant.parse(date);
-        ZoneId zoneId = ZoneId.of("Asia/Kuala_Lumpur");
-        ZonedDateTime zdt = instant.atZone(zoneId);
-        return zdt.toLocalDate();
 
     }
 

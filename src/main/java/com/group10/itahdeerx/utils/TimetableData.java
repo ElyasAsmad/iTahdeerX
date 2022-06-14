@@ -61,4 +61,9 @@ public class TimetableData {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+
+    @Override
+    public String toString() {
+        return this.courseCode + " | " + this.courseName + " ( " + timeFrom + " - " + timeTo + " ) ";
+    }
 }

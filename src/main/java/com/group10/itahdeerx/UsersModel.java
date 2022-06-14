@@ -67,10 +67,10 @@ public class UsersModel implements Serializable {
 
     @Override
     public String toString() {
-        return "username: " + this.username +
-                "password: " + this.password +
-                "matricNumber: " + this.matricNumber +
-                "fullName: " + this.fullName +
-                "mahallahName: " + this.mahallahName;
+        return "Username: " + this.username + " | " +
+                "Password: " + this.password + " | " +
+                "Matric Number: " + this.matricNumber + " | " +
+                "Full Name: " + this.fullName + " | " +
+                "Mahallah's Name: " + this.mahallahName + "\n";
     }
 }

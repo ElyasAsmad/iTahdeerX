@@ -1,8 +1,6 @@
 package com.group10.itahdeerx;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
