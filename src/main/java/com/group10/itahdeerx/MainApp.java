@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -38,7 +39,7 @@ public class MainApp extends Application {
     List<UsersModel> users;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
         loadUsers();
 
@@ -120,9 +121,7 @@ public class MainApp extends Application {
 
         Button submitButton = new MyButton("Sign In", Theme.LIGHT);
         submitButton.prefWidthProperty().bind(hBox.widthProperty().multiply(0.5));
-        submitButton.setOnMouseClicked(mouseEvent -> {
-            signIn(username.getText(), password.getText());
-        });
+        submitButton.setOnMouseClicked(mouseEvent -> signIn(username.getText(), password.getText()));
 
         Button signUpButton = new MyButton("Sign Up", Theme.LIGHT);
         signUpButton.prefWidthProperty().bind(stage.widthProperty().multiply(0.5));

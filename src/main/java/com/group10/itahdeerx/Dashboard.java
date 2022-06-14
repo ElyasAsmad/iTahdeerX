@@ -1,13 +1,17 @@
 package com.group10.itahdeerx;
 
 import com.group10.itahdeerx.components.MyButton;
+import com.group10.itahdeerx.components.TimeTable;
 import com.group10.itahdeerx.utils.Theme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -16,7 +20,7 @@ import java.util.Properties;
 
 public class Dashboard {
 
-    private UsersModel currentUser;
+    private final UsersModel currentUser;
 
     public Dashboard(UsersModel currentUser) {
         this.currentUser = currentUser;
@@ -55,10 +59,41 @@ public class Dashboard {
         topContainer.getChildren().addAll(infoGrowBox, logoutButton);
         topContainer.setStyle("-fx-background-color: #cce8e6; -fx-background-radius: 20px;");
         topContainer.setPadding(new Insets(20));
+        VBox.setMargin(topContainer, new Insets(20));
+
+        Text title = new Text("i-TahdeerX");
+        title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+
+        ImageView imageView = new ImageView(getClass().getResource("images/iium.png").toExternalForm());
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+
+        Text brandText = new Text("i-TahdeerX");
+        brandText.setFill(Color.WHITE);
+        brandText.setStyle("-fx-font-weight: bold; -fx-font-size: 24px;");
+
+        HBox brandContainer = new HBox();
+        brandContainer.setPrefHeight(80);
+        brandContainer.setStyle("-fx-background-color: #009290;");
+        brandContainer.setPadding(new Insets(20));
+        brandContainer.setAlignment(Pos.CENTER_LEFT);
+        brandContainer.setSpacing(10);
+        brandContainer.getChildren().addAll(imageView, brandText);
+        HBox.setHgrow(brandContainer, Priority.ALWAYS);
+
+        HBox topBarContainer = new HBox();
+        topBarContainer.setAlignment(Pos.CENTER);
+        topBarContainer.getChildren().addAll(brandContainer);
+
+        TimeTable myTimetable = new TimeTable(300, 500);
+        myTimetable.enableActionButton();
+
+        VBox contentContainer = new VBox();
+        contentContainer.getChildren().add(myTimetable.render());
+        VBox.setMargin(contentContainer, new Insets(0, 20, 0, 20));
 
         VBox mainContainer = new VBox();
-        mainContainer.setPadding(new Insets(20));
-        mainContainer.getChildren().addAll(topContainer);
+        mainContainer.getChildren().addAll(topBarContainer, topContainer, contentContainer);
 
         return mainContainer;
     }
